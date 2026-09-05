@@ -31,7 +31,7 @@ function drawBody(body) {
 function createBodies() {
   return [
     new Body(400, 400, 0, 0, 10000, 20, "yellow"),
-    new Body(400, 200, 7.07, 0, 1, 5, "blue"),
+    new Body(300, 200, 7.07, 0, 1, 5, "blue"),
   ];
 }
 
