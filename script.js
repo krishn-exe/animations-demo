@@ -1,7 +1,7 @@
 // CONSTANTS & SIMULATION PARAMETERS
-const G = 1;          
-const SOFTENING = 5;  
-let dt = 0.5;          
+let G = 1;          
+let SOFTENING = 5;  
+let dt = 1;          
 
 // BODY CLASS & FUNCTIONS
 class Body {
@@ -14,7 +14,7 @@ class Body {
   }
 }
 
-function createBodies() {
+function createInitialBodies() {
   return [
     new Body(400, 400, 0, 0, 10000, 20, "yellow"),
     new Body(300, 200, 7.07, 0, 1, 5, "blue"),
@@ -75,30 +75,59 @@ window.addEventListener("resize", resizeCanvas);
 
 let isPaused = true;
 
-let bodies = createBodies();
+let bodies = createInitialBodies();
 
 const pauseBtn = document.getElementById("pauseBtn");
 const resetBtn = document.getElementById("resetBtn");
+const clearBtn = document.getElementById("clearBtn");
 const dtSlider = document.getElementById("dtSlider");
 const dtVal = document.getElementById("dtVal");
+const GSlider = document.getElementById("GSlider");
+const GVal = document.getElementById("GVal");
+const SofteningSlider = document.getElementById("SofteningSlider");
+const SofteningVal = document.getElementById("SofteningVal");
+
+dtSlider.value = dt;
+dtVal.textContent = dt;
+
+GSlider.value = G;
+GVal.textContent = G;
+
+SofteningSlider.value = SOFTENING;
+SofteningVal.textContent = SOFTENING;
 
 pauseBtn.addEventListener("click", () => {
   isPaused = !isPaused;
   pauseBtn.innerHTML = isPaused ? '<i class="fa-solid fa-play"></i>': '<i class="fa-solid fa-pause"></i>';
 });
 
+clearBtn.addEventListener("click", () => {
+  bodies = [];
+  isPaused = true;
+  pauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+});
 
 resetBtn.addEventListener("click", () => {
-    bodies = []
-    isPaused = true;
-    pauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+  bodies = [];
+  isPaused = true;
+  pauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+  bodies = createInitialBodies();
 });
 
-dtSlider.addEventListener("input", (e) => {
-  dt = parseFloat(e.target.value);
-  dtVal.textContent = dt;
+dtSlider.addEventListener("input", () => {
+  dt = parseFloat(dtSlider.value);
+  dtVal.textContent = dtSlider.value;
 });
 
+GSlider.addEventListener("input", () => {
+  G = parseFloat(GSlider.value);
+  GVal.textContent = GSlider.value;
+});
+
+SofteningSlider.addEventListener("input", () => {
+  SOFTENING = parseFloat(SofteningSlider.value);
+  SofteningVal.textContent = SofteningSlider.value;
+});
 
 function loop() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
