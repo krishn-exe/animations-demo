@@ -65,7 +65,8 @@ body {
 .card-btn {
   color: #5865f2;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 1rem;
+  text-decoration: underline;
 }
 
 
@@ -74,7 +75,8 @@ body {
   background: #5865f2;
   color: #ffffff;
   text-decoration: none;
+  font-size: 2rem;
   padding: 14px 32px;
   border-radius: 8px;
-  font-weight: 600;
+  font-weight: 400;
 }
