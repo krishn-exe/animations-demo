@@ -15,40 +15,10 @@ canvas {
 .controls {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
   align-items: center;
   gap: 24px;
   padding-top: 15px;
   padding-left: 20px;
-}
-
-.slider-group {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: #ffffff;
-  font-family: 'Outfit', sans-serif;
-  font-size: 1.5rem;
-}
-
-.slider-group label {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  white-space: nowrap;
-}
-
-.slider-group label span {
-  display: inline-block;
-  width: 44px;
-  font-variant-numeric: tabular-nums;
-}
-
-.controls input{
-  accent-color: #5865f2;
-  cursor: pointer;
-  width: 100px;
-  flex-shrink: 0;
 }
 
 .controls button {  
@@ -60,4 +30,30 @@ canvas {
   border-radius: 0.5rem;
   font-size: 1rem;
   cursor: pointer;
+}
+
+.slider-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  color: #ffffff;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.5rem;
+}
+
+.slider-group label {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.slider-group label span {
+  width: 50px;
+}
+
+.slider-group input {
+  accent-color: #5865f2;
+  cursor: pointer;
+  width: 100px;
 }

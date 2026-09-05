@@ -1,0 +1,80 @@
+body {
+  background: #0b0c10;
+  color: #ffffff;
+  font-family: 'Outfit', sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+}
+
+.container {
+  max-width: 1200px;
+  margin:auto;
+  padding: 30px 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+}
+.header p {
+  font-size: 1.2rem;
+  color: #8c93a8;
+}
+
+.preset-grid {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.preset-card {
+  background: #141722;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 24px;
+  text-decoration: none;
+  text-align: left;
+  color: #ffffff;
+}
+
+.card-icon {
+  width: 42px;
+  height: 42px;
+  background: #5865f2;
+  text-align: center;
+  line-height: 42px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.preset-card p {
+  color: #8c93a8;
+  font-size: 0.9rem;
+}
+
+.card-btn {
+  color: #5865f2;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+
+.sim a {
+  display: inline-block;
+  background: #5865f2;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 14px 32px;
+  border-radius: 8px;
+  font-weight: 600;
+}

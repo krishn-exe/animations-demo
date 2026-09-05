@@ -73,7 +73,7 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
-let isPaused = true;
+let isPaused = false;
 
 let bodies = createInitialBodies();
 
