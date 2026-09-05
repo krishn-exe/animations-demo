@@ -16,10 +16,24 @@ html, body {
 .controls {
   display: flex;
   flex-direction: row;
+  align-items: center;
   gap: 20px;
   position: absolute;
   padding-top: 15px;
   padding-left: 20px;
+}
+
+.slider-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #ffffff;
+  font-family: sans-serif;
+}
+
+#dtSlider {
+  accent-color: #5865f2;
+  cursor: pointer;
 }
 
 .controls button {  

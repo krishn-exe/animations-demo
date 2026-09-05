@@ -1,14 +1,9 @@
-let canvas = document.getElementById("canvas");
-let ctx = canvas.getContext("2d");
+// CONSTANTS & SIMULATION PARAMETERS
+const G = 1;          
+const SOFTENING = 5;  
+let dt = 0.5;          
 
-function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-
-resizeCanvas();
-window.addEventListener("resize", resizeCanvas);
-
+// BODY CLASS & FUNCTIONS
 class Body {
   constructor(x, y, vx, vy, mass, radius, color) {
     this.x = x; this.y = y;
@@ -19,7 +14,12 @@ class Body {
   }
 }
 
-let isPaused = true;
+function createBodies() {
+  return [
+    new Body(400, 400, 0, 0, 10000, 20, "yellow"),
+    new Body(300, 200, 7.07, 0, 1, 5, "blue"),
+  ];
+}
 
 function drawBody(body) {
   ctx.beginPath();
@@ -28,38 +28,8 @@ function drawBody(body) {
   ctx.fill();
 }
 
-function createBodies() {
-  return [
-    new Body(400, 400, 0, 0, 10000, 20, "yellow"),
-    new Body(300, 200, 7.07, 0, 1, 5, "blue"),
-  ];
-}
-
-let bodies = createBodies();
-
-const pauseBtn = document.getElementById("pauseBtn");
-const resetBtn = document.getElementById("resetBtn");
-
-pauseBtn.addEventListener("click", () => {
-  isPaused = !isPaused;
-  pauseBtn.innerHTML = isPaused ? '<i class="fa-solid fa-play"></i>': '<i class="fa-solid fa-pause"></i>';
-});
-
-
-resetBtn.addEventListener("click", () => {
-    bodies = []
-    isPaused = true;
-    pauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
-});
-
-
-
-const G = 1;          
-const SOFTENING = 5;  
-const dt = 0.5;          
-
 function updateBodies() {
-// FORCE CALCULATION
+  // FORCE CALCULATION
   for (let i = 0; i < bodies.length; i++) {
     let fx = 0, fy = 0;
     const a = bodies[i];
@@ -90,6 +60,45 @@ function updateBodies() {
     body.y += body.vy * dt;
   }
 }
+
+// CANVAS SETUP
+let canvas = document.getElementById("canvas");
+let ctx = canvas.getContext("2d");
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
+
+let isPaused = true;
+
+let bodies = createBodies();
+
+const pauseBtn = document.getElementById("pauseBtn");
+const resetBtn = document.getElementById("resetBtn");
+const dtSlider = document.getElementById("dtSlider");
+const dtVal = document.getElementById("dtVal");
+
+pauseBtn.addEventListener("click", () => {
+  isPaused = !isPaused;
+  pauseBtn.innerHTML = isPaused ? '<i class="fa-solid fa-play"></i>': '<i class="fa-solid fa-pause"></i>';
+});
+
+
+resetBtn.addEventListener("click", () => {
+    bodies = []
+    isPaused = true;
+    pauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+});
+
+dtSlider.addEventListener("input", (e) => {
+  dt = parseFloat(e.target.value);
+  dtVal.textContent = dt;
+});
+
 
 function loop() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
