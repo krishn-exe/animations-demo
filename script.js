@@ -19,20 +19,44 @@ class Body {
   }
 }
 
-let bodies = [];
+let isPaused = true;
 
-bodies.push(new Body(
-  350, 400, 0, -3,
-  5000, 15, "orange"
-));
-bodies.push(new Body(
-  450, 400, 0, 3,
-  5000, 15, "cyan"
-));
+function drawBody(body) {
+  ctx.beginPath();
+  ctx.arc(body.x, body.y, body.radius, 0, Math.PI * 2);
+  ctx.fillStyle = body.color;
+  ctx.fill();
+}
+
+function createBodies() {
+  return [
+    new Body(400, 400, 0, 0, 10000, 20, "yellow"),
+    new Body(400, 200, 7.07, 0, 1, 5, "blue"),
+  ];
+}
+
+let bodies = createBodies();
+
+const pauseBtn = document.getElementById("pauseBtn");
+const resetBtn = document.getElementById("resetBtn");
+
+pauseBtn.addEventListener("click", () => {
+  isPaused = !isPaused;
+  pauseBtn.innerHTML = isPaused ? '<i class="fa-solid fa-play"></i>': '<i class="fa-solid fa-pause"></i>';
+});
+
+
+resetBtn.addEventListener("click", () => {
+    bodies = []
+    isPaused = true;
+    pauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+});
+
+
 
 const G = 1;          
-const SOFTENING = 0;  
-const dt = 1;          
+const SOFTENING = 5;  
+const dt = 0.5;          
 
 function updateBodies() {
 // FORCE CALCULATION
@@ -67,17 +91,13 @@ function updateBodies() {
   }
 }
 
-function drawBody(body) {
-  ctx.beginPath();
-  ctx.arc(body.x, body.y, body.radius, 0, Math.PI * 2);
-  ctx.fillStyle = body.color;
-  ctx.fill();
-}
-
 function loop() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  updateBodies();
+  if (!isPaused) {
+    updateBodies();
+  }
+
   for (let body of bodies) {
     drawBody(body);
   }
